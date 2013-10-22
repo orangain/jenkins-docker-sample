@@ -2,12 +2,12 @@
 
 import unittest
 
-from lxml import etree
+from config_reader import ConfigReader
 
-class TestXML(unittest.TestCase):
+class TestConfigReader(unittest.TestCase):
 
-    def test_xpath(self):
-        root = etree.XML("""
+    def test_get_names(self):
+        config = ConfigReader("""
             <root>
                 <person>
                     <name>山田</name>
@@ -20,4 +20,4 @@ class TestXML(unittest.TestCase):
             </root>
             """)
 
-        self.assertEqual(root.xpath('//person/name/text()'), ['山田', '佐藤'])
+        self.assertEqual(config.get_names(), ['山田', '佐藤'])
