@@ -6,8 +6,8 @@ from config_reader import ConfigReader
 
 class TestConfigReader(unittest.TestCase):
 
-    def test_get_names(self):
-        config = ConfigReader("""
+    def setUp(self):
+        self.config = ConfigReader("""
             <root>
                 <person>
                     <name>山田</name>
@@ -20,4 +20,9 @@ class TestConfigReader(unittest.TestCase):
             </root>
             """)
 
-        self.assertEqual(config.get_names(), ['山田', '佐藤'])
+
+    def test_get_names(self):
+        self.assertEqual(self.config.get_names(), ['山田', '佐藤'])
+
+    def test_get_ages(self):
+        self.assertEqual(self.config.get_ages(), ['15', '43'])
